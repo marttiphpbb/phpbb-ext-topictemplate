@@ -12,7 +12,7 @@ With this extension you can set a Topic Template (text) in the ACP for each foru
 Whenever someone starts a topic. The editor gets prefilled with the text that you defined.
 
 ## Screenshots
- 
+
 **Add or Edit a forum in the ACP**
 
 ![ACP](/doc/acp.png)
