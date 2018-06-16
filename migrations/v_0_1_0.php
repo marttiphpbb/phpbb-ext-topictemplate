@@ -14,7 +14,7 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 	static public function depends_on()
 	{
 		return [
-			'\phpbb\db\migration\data\v32x\v320',
+			'\phpbb\db\migration\data\v320\v320',
 		];
 	}
 
