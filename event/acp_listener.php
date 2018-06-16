@@ -12,39 +12,22 @@ use phpbb\db\driver\factory as db;
 use phpbb\request\request;
 use phpbb\language\language;
 use marttiphpbb\topictemplate\service\store;
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class acp_listener implements EventSubscriberInterface
 {
-	/** @var db **/
-	private $db;
+	protected $db;
+	protected $request;
+	protected $language;
+	protected $store;
+	protected $forums_table;
 
-	/** @var request */
-	private $request;
-
-	/** @var language */
-	private $language;
-
-	/** @var store */
-	private $store;
-
-	/** @var string */
-	private $forums_table;
-
-	/**
-	* @param db	
-	* @param request
-	* @param language
-	* @param store
-	* @param string
-	*/
 	public function __construct(
-			db $db,
-			request $request,
-			language $language,
-			store $store,
-			string $forums_table
+		db $db,
+		request $request,
+		language $language,
+		store $store,
+		string $forums_table
 	)
 	{
 		$this->db = $db;
@@ -65,14 +48,14 @@ class acp_listener implements EventSubscriberInterface
 
 	public function core_acp_manage_forums_initialise_data(event $event)
 	{
-		/** 
+		/**
 			because there's no php event where a form is deleted,
 			we do here cleanup of Topic Templates of deleted forums.
 			This functions runs when adding or editing a forum in ACP.
 		*/
 
 		$keep_forum_ids = [];
-	
+
 		$sql = 'select forum_id from ' . $this->forums_table;
 		$result = $this->db->sql_query($sql);
 		while ($forum_id = $this->db->sql_fetchfield('forum_id'))

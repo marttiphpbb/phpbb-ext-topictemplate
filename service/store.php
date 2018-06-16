@@ -16,19 +16,14 @@ class store
 	const KEY = 'marttiphpbb_topictemplate';
 	const CACHE_KEY = '_' . self::KEY;
 
-	/** @var config_text */
-	private $config_text;
-
-	/** @var cache */
-	private $cache;
-	
-	/** @var array */
-	private $data = [];
+	protected $config_text;
+	protected $cache;
+	protected $data = [];
 
 	public function __construct(config_text $config_text, cache $cache)
 	{
-		$this->config_text = $config_text;	
-		$this->cache = $cache;		
+		$this->config_text = $config_text;
+		$this->cache = $cache;
 	}
 
 	private function load()
@@ -38,13 +33,13 @@ class store
 			return;
 		}
 
-		$this->data = $this->cache->get(self::CACHE_KEY);		
-		
+		$this->data = $this->cache->get(self::CACHE_KEY);
+
 		if ($this->data)
 		{
 			return;
 		}
-		
+
 		$this->data = unserialize($this->config_text->get(self::KEY));
 		$this->cache->put(self::CACHE_KEY, $this->data);
 	}
@@ -75,7 +70,7 @@ class store
 		$this->write();
 	}
 
-	public function get_template_forum_ids():array 
+	public function get_template_forum_ids():array
 	{
 		$this->load();
 		return array_keys($this->data['templates'] ?? []);
@@ -91,13 +86,13 @@ class store
 	{
 		$this->load();
 
-		if (strlen($template) === 0) 
+		if (strlen($template) === 0)
 		{
 			unset($this->data['templates'][$forum_id]);
 		}
 		else
 		{
-			$this->data['templates'][$forum_id] = $template;			
+			$this->data['templates'][$forum_id] = $template;
 		}
 
 		$this->write();
@@ -106,7 +101,7 @@ class store
 	public function template_is_set(int $forum_id):bool
 	{
 		$this->load();
-	
+
 		return isset($this->data['templates'][$forum_id]);
 	}
 

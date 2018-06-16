@@ -9,17 +9,12 @@ namespace marttiphpbb\topictemplate\event;
 
 use phpbb\event\data as event;
 use marttiphpbb\topictemplate\service\store;
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class posting_listener implements EventSubscriberInterface
 {
-	/** @var store */
-	private $store;
+	protected $store;
 
-	/**
-	* @param store
-	*/
 	public function __construct(store $store)
 	{
 		$this->store = $store;
