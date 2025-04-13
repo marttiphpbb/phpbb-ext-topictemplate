@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Topic Template Extension for phpBB 3.2",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-topictemplate",
-	"version": "0.1.1",
-	"time": "2018-05-31",
+	"version": "0.2.0",
+	"time": "2025-04-13",
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "martti",
@@ -21,7 +21,7 @@
 	"extra": {
 		"display-name": "Topic Template",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2,<3.3"
+			"phpbb/phpbb": ">=3.2"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",
